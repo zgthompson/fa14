@@ -1,22 +1,7 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
-const int BUFFER_MAX = 1048576;
-const int ESTIMATED_FRACTION_LENGTH = 20;
-
-
-typedef struct {
-    int wholeNumber;
-    int numerator;
-    int denominator;
-    double value;
-} fraction;
-
-
-bool fraction_init(fraction *f);
-int fraction_gcd(int, int);
-
+#include "fraction.h"
 
 bool fraction_init(fraction *f) {
 
@@ -94,39 +79,3 @@ int fraction_compare(const void *f1, const void *f2) {
     else return 1;
 }
 
-
-int main(void) {
-
-
-    int arraySize = 1024;
-    fraction *fractions = malloc( sizeof(fraction) * arraySize );
-
-    int totalFractions = 0;
-
-    fraction f;
-    while ( fraction_init(&f) ) {
-
-        fractions[totalFractions++] = f;
-
-        if (totalFractions == arraySize) {
-            arraySize = arraySize * 2;
-            fractions = realloc( fractions, sizeof(fraction) * arraySize );
-        }
-    }
-
-    qsort(fractions, totalFractions, sizeof(fraction), fraction_compare);
-
-    int estimatedSpace = totalFractions * ESTIMATED_FRACTION_LENGTH;
-    int bufferSize = estimatedSpace < BUFFER_MAX ? estimatedSpace : BUFFER_MAX;
-    char buffer[bufferSize];
-    setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
-
-    int i = 0;
-    while (i < totalFractions) {
-        fraction f = fractions[i++];
-
-        printf("%d %d/%d\n", f.wholeNumber, f.numerator, f.denominator);
-    }
-
-    return 0;
-}
