@@ -19,6 +19,10 @@ def tags(startTag):
         else:
             current = current[REMOVE_COUNT:] + ZERO_SUFFIX
 
+def printTagSystem(startTag):
+    for tag in tags(startTag):
+        print tag
+
 class TagSystem(object):
 
     ZERO_SUFFIX = "00"
