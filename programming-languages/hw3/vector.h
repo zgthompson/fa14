@@ -5,7 +5,7 @@
 #include <string.h>
 
 typedef struct {
-    char *data;
+    void *data;
     int typeSize;
     int capacity;
     int count;

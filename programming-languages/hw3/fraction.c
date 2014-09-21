@@ -3,12 +3,12 @@
 
 #include "fraction.h"
 
-bool fraction_init(fraction *f) {
+bool fraction_init(FILE *fp, fraction *f) {
 
     int ch;
     int wholeNumber, numerator, denominator, multiplier;
 
-    if ((ch = getchar()) == EOF) return false;
+    if ((ch = fgetc(fp)) == EOF) return false;
 
     wholeNumber = numerator = denominator = 0;
     multiplier = 1;
@@ -16,18 +16,18 @@ bool fraction_init(fraction *f) {
     // parse wholeNumber
     if (ch == '-') multiplier = -1;
     else wholeNumber = ch - '0';
-    while ( (ch = getchar()) != ' ' ) {
+    while ( (ch = fgetc(fp)) != ' ' ) {
         wholeNumber = wholeNumber * 10 + ch - '0';
     }
     // parse numerator
-    ch = getchar();
+    ch = fgetc(fp);
     if (ch == '-') multiplier = -1;
     else numerator = ch - '0';
-    while ( (ch = getchar()) != '/' ) {
+    while ( (ch = fgetc(fp)) != '/' ) {
         numerator = numerator * 10 + ch - '0';
     }
     // parse denominator
-    while ( (ch = getchar()) != '\n' ) {
+    while ( (ch = fgetc(fp)) != '\n' ) {
         denominator = denominator * 10 + ch - '0';
     }
 
@@ -74,8 +74,6 @@ int fraction_gcd(int a, int b) {
 
 
 int fraction_compare(const void *f1, const void *f2) {
-    double diff = ((fraction*)f1)->value - ((fraction*)f2)->value;
-    if (diff < 0) return -1;
-    else return 1;
+    return ((fraction*)f1)->value - ((fraction*)f2)->value;
 }
 

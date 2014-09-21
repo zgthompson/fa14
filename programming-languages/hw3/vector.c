@@ -1,18 +1,20 @@
+#include <stdlib.h>
+
 #include "vector.h"
 
 vector *vector_new(int typeSize) {
-    vector *v = (vector*)malloc(sizeof(vector));
+    vector *v = malloc(sizeof(vector));
     v->typeSize = typeSize;
     v->capacity = 32;
     v->count = 0;
-    v->data = (char*)malloc(v->typeSize * v->capacity);
+    v->data = malloc(v->typeSize * v->capacity);
     return v;
 }
 
 
 void vector_grow(vector *v) {
     v->capacity *= 2;
-    v->data = (char*)realloc( v->data, v->typeSize * v->capacity);
+    v->data = realloc( v->data, v->typeSize * v->capacity);
 }
 
 void vector_push(vector *v, void *data) {
@@ -27,7 +29,7 @@ void vector_push(vector *v, void *data) {
 
 
 void *vector_get(vector *v, int index) {
-    return (void*)(v->data + (index * v->typeSize));
+    return v->data + (index * v->typeSize);
 }
 
 
