@@ -6,7 +6,9 @@
 
 void quicksort(void *left, void *right, int typeSize, compare_func comp) {
 
-    void *pivot = left + (((right - left) / typeSize) / 2) * typeSize;
+    void *middle = left + (((right - left) / typeSize) / 2) * typeSize;
+    void *pivot = malloc(typeSize);
+    memcpy(pivot, middle, typeSize);
 
     void *i = left;
     void *j = right;
@@ -28,6 +30,7 @@ void quicksort(void *left, void *right, int typeSize, compare_func comp) {
     }
 
     free(temp);
+    free(pivot);
 
     if (left < j) {
         quicksort(left, j, typeSize, comp);

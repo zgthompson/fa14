@@ -20,13 +20,20 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    //int arraySize = 1024;
     vector *fractions = vector_new(sizeof(fraction));
+
+    fraction sum;
+    sum.numerator = 0;
+    sum.denominator = 1;
 
     fraction f;
     while ( fraction_init(fp, &f) ) {
+        fraction_add(&sum, &f);
         vector_push(fractions, &f);
     }
+
+    printf("The sum of the fractions is: ");
+    fraction_print(&sum);
 
     int totalFractions = vector_count(fractions);
 

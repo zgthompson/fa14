@@ -9,7 +9,7 @@ def randomFractionString():
     else:
         numerator = random.randint(-256, 255)
 
-    denominator = random.randint(1, 256)
+    denominator = random.randint(1, 6)
 
     return "%d %d/%d\n" % ( wholeNumber, numerator, denominator )
 
