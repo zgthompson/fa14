@@ -30,18 +30,15 @@ int main(int argc, char **argv) {
 
     int totalFractions = vector_count(fractions);
 
-    quicksort(fractions->data, totalFractions, sizeof(fraction), fraction_compare);
+    quicksort(vector_get(fractions, 0), vector_get(fractions, totalFractions - 1), sizeof(fraction), fraction_compare);
 
     char buffer[BUFFER_SIZE];
     setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
 
     int i = 0;
     while (i < totalFractions) {
-
-        fraction f;
-        vector_copy_item(fractions, &f, i++);
-
-        printf("%d %d/%d\n", f.wholeNumber, f.numerator, f.denominator);
+        fraction *f = vector_get(fractions, i++);
+        fraction_print(f);
     }
 
     return 0;

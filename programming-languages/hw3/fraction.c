@@ -6,7 +6,8 @@
 bool fraction_init(FILE *fp, fraction *f) {
 
     int ch;
-    int wholeNumber, numerator, denominator, multiplier;
+    int wholeNumber, multiplier;
+    long long numerator, denominator;
 
     if ((ch = fgetc(fp)) == EOF) return false;
 
@@ -31,28 +32,16 @@ bool fraction_init(FILE *fp, fraction *f) {
         denominator = denominator * 10 + ch - '0';
     }
 
-    // deal with improper fractions
-    if (numerator >= denominator) {
-        wholeNumber = wholeNumber + numerator / denominator;
-        numerator = numerator % denominator;
-    }
 
     // reduce the numerator and denominator to lowest terms
-    int divisor = fraction_gcd(denominator, numerator);
+    long long divisor = fraction_gcd(denominator, numerator);
     numerator = numerator / divisor;
     denominator = denominator / divisor;
 
-    // assign a value for the comparison function
-    f->value = (wholeNumber + (double) numerator / denominator) * multiplier;
-
-    // restore negative sign according to output format
-    if (multiplier == -1) {
-        if (wholeNumber > 0) wholeNumber = -wholeNumber;
-        else numerator = -numerator;
-    }
+    numerator += wholeNumber * denominator;
+    numerator *= multiplier;
 
     // set remaining member variables
-    f->wholeNumber = wholeNumber;
     f->numerator = numerator;
     f->denominator = denominator;
 
@@ -61,10 +50,10 @@ bool fraction_init(FILE *fp, fraction *f) {
 }
 
 
-int fraction_gcd(int a, int b) {
+long long fraction_gcd(long long a, long long b) {
 
     while (b != 0) {
-        int oldA = a;
+        long long oldA = a;
         a = b;
         b = oldA % b;
     }
@@ -73,7 +62,30 @@ int fraction_gcd(int a, int b) {
 }
 
 
-int fraction_compare(const void *f1, const void *f2) {
-    return ((fraction*)f1)->value - ((fraction*)f2)->value;
+int fraction_compare(const void *lhs, const void *rhs) {
+    fraction *f1 = (fraction*)lhs;
+    fraction *f2 = (fraction*)rhs;
+    return (f1->numerator * f2-> denominator) - (f2->numerator * f1->denominator);
+}
+
+
+void fraction_add(fraction *f1, const fraction *f2) {
+    f1->numerator = (f1->numerator * f2->denominator) + (f2->numerator * f1->denominator);
+    f1->denominator *= f2->denominator;
+
+    long long divisor = fraction_gcd(f1->denominator, f1->numerator);
+    f1->numerator /= divisor;
+    f1->denominator /= divisor;
+}
+
+void fraction_print(const fraction *f) {
+    int wholePrint = f->numerator / f->denominator;
+    int numeratorPrint = f->numerator % f->denominator;
+
+    if (wholePrint < 0 && numeratorPrint < 0) {
+        numeratorPrint = -numeratorPrint;
+    }
+
+    printf("%d %d/%d\n", wholePrint, numeratorPrint, (int)f->denominator);
 }
 

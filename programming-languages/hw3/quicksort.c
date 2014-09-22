@@ -3,33 +3,38 @@
 
 #include "quicksort.h"
 
-void quicksort(void *base, int count, int typeSize, compare_func comp) {
 
-    if (count < 2) return;
+void quicksort(void *left, void *right, int typeSize, compare_func comp) {
 
-    void *pivot = base + ((count / 2) * typeSize);
-    void *left = base;
-    void *right = base + ((count - 1) * typeSize);
+    void *pivot = left + (((right - left) / typeSize) / 2) * typeSize;
+
+    void *i = left;
+    void *j = right;
+
     void *temp = malloc(typeSize);
 
-    while (left <= right) {
-        if ( comp(left, pivot) < 0) {
-            left += typeSize;
-        }
-        else if ( comp(right, pivot) > 0 ) {
-            right -= typeSize;
-        }
-        else {
-            memcpy(temp, left, typeSize);
-            memcpy(left, right, typeSize);
-            memcpy(right, temp, typeSize);
-            left += typeSize;
-            right -= typeSize;
+    while (i <= j) {
+        while (comp(i, pivot) < 0) i += typeSize;
+        while (comp(j, pivot) > 0) j -= typeSize;
+
+        if (i <= j) {
+            memcpy(temp, i, typeSize);
+            memcpy(i, j, typeSize);
+            memcpy(j, temp, typeSize);
+
+            i += typeSize;
+            j -= typeSize;
         }
     }
 
     free(temp);
 
-    quicksort(base, (right - base) / typeSize + 1, typeSize, comp);
-    quicksort(left, ((base + count * typeSize) - left) / typeSize, typeSize, comp);
+    if (left < j) {
+        quicksort(left, j, typeSize, comp);
+    }
+
+    if (i < right) {
+        quicksort(i, right, typeSize, comp); 
+    }
+
 }
