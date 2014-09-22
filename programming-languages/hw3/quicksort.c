@@ -3,6 +3,8 @@
 
 #include "quicksort.h"
 
+const int SELECTION_SORT_THRESHOLD = 10;
+
 
 void quicksort(void *left, void *right, int typeSize, compare_func comp) {
 
@@ -64,10 +66,35 @@ void fraction_quicksort(fraction *array, int left, int right) {
     }
 
     if (left < j) {
-        fraction_quicksort(array, left, j);
+        if (j - left < SELECTION_SORT_THRESHOLD) {
+            fraction_insertionsort(array, left, j);
+        }
+        else {
+            fraction_quicksort(array, left, j);
+        }
     }
 
     if (i < right) {
-        fraction_quicksort(array, i, right);
+        if (right - i < SELECTION_SORT_THRESHOLD) {
+            fraction_insertionsort(array, i, right);
+        }
+        else {
+            fraction_quicksort(array, i, right);
+        }
+    }
+}
+
+
+void fraction_insertionsort(fraction *array, int left, int right) {
+    int i = left + 1;
+    while (i <= right) {
+        fraction f = array[i];
+        int j = i;
+        while (j > left && array[j-1].value > f.value) {
+            array[j] = array[j-1];
+            --j;
+        }
+        array[j] = f;
+        ++i;
     }
 }

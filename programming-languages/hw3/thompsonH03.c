@@ -44,6 +44,7 @@ int main(int argc, char **argv) {
     fraction *fractionArray = fractions->data;
 
     // quicksort is general case and works for all fractions that have at most an integer sized numerator and denominator
+
     //quicksort(vector_get(fractions, 0), vector_get(fractions, totalFractions - 1), sizeof(fraction), fraction_compare);
 
     // fraction quicksort is optimized for speed and works as long as fractions can be differentiated by double value

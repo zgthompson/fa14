@@ -5,7 +5,7 @@
 vector *vector_new(int typeSize) {
     vector *v = malloc(sizeof(vector));
     v->typeSize = typeSize;
-    v->capacity = 32;
+    v->capacity = 1024;
     v->count = 0;
     v->data = malloc(v->typeSize * v->capacity);
     return v;
