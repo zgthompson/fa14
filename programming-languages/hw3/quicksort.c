@@ -51,8 +51,8 @@ void fraction_quicksort(fraction *array, int left, int right) {
     int j = right;
 
     while (i <= j) {
-        while (fraction_compare(&(array[i]), &pivot) < 0) ++i;
-        while (fraction_compare(&(array[j]), &pivot) > 0) --j;
+        while (array[i].value < pivot.value) ++i;
+        while (array[j].value > pivot.value) --j;
 
         if (i <= j) {
             fraction temp = array[i];

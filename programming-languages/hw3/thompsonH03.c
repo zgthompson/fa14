@@ -1,3 +1,5 @@
+// time spent - 6 hours
+
 #include <stdio.h>
 
 #include "vector.h"
@@ -39,17 +41,20 @@ int main(int argc, char **argv) {
     fraction_print(&sum);
 
     int totalFractions = vector_count(fractions);
+    fraction *fractionArray = fractions->data;
 
+    // quicksort is general case and works for all fractions that have at most an integer sized numerator and denominator
     //quicksort(vector_get(fractions, 0), vector_get(fractions, totalFractions - 1), sizeof(fraction), fraction_compare);
-    fraction_quicksort(fractions->data, 0, totalFractions - 1);
+
+    // fraction quicksort is optimized for speed and works as long as fractions can be differentiated by double value
+    fraction_quicksort(fractionArray, 0, totalFractions - 1);
 
     char buffer[BUFFER_SIZE];
     setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
 
     int i = 0;
     while (i < totalFractions) {
-        fraction *f = vector_get(fractions, i++);
-        fraction_print(f);
+        fraction_print(&fractionArray[i++]);
     }
 
     return 0;

@@ -7,6 +7,7 @@
 typedef struct {
     long long numerator;
     long long denominator;
+    double value;
 } fraction;
 
 
