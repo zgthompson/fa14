@@ -3,11 +3,14 @@
 #include "vector.h"
 #include "fraction.h"
 #include "quicksort.h"
+#include "SetLimits.h"
 
 const int BUFFER_SIZE = 1048576;
 
 
 int main(int argc, char **argv) {
+
+    SetLimits();
 
     if (argc != 2) {
         return 1;

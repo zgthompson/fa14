@@ -1,11 +1,11 @@
 CC = gcc
-CFLAGS = -Wall -g
+CFLAGS = -Wall
 SIZE = 1000
 
 all: H03.out
 
-H03.out: thompsonH03.o vector.o fraction.o quicksort.o
-	$(CC) $(CFLAGS) thompsonH03.o vector.o fraction.o quicksort.o -o H03.out
+H03.out: thompsonH03.o vector.o fraction.o quicksort.o SetLimits.o
+	$(CC) $(CFLAGS) thompsonH03.o vector.o fraction.o quicksort.o SetLimits.o -o H03.out
 
 thompsonH03.o: thompsonH03.c
 	$(CC) $(CFLAGS) -c thompsonH03.c
@@ -19,12 +19,15 @@ fraction.o: fraction.c
 quicksort.o: quicksort.c
 	$(CC) $(CFLAGS) -c quicksort.c
 
+SetLimits.o: SetLimits.c
+	$(CC) $(CFLAGS) -c SetLimits.c
+
 fractions:
 	python generateFractions.py $(SIZE)
 
 tar:
 	mkdir thompsonH03
-	cp thompsonH03.c vector.c vector.h fraction.c fraction.h quicksort.c quicksort.h Makefile thompsonH03/
+	cp thompsonH03.c SetLimits.h SetLimits.c vector.c vector.h fraction.c fraction.h quicksort.c quicksort.h Makefile thompsonH03/
 	tar cfvz thompsonH03.tgz thompsonH03/
 	rm -rf thompsonH03
 
