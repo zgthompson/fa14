@@ -40,7 +40,8 @@ int main(int argc, char **argv) {
 
     int totalFractions = vector_count(fractions);
 
-    quicksort(vector_get(fractions, 0), vector_get(fractions, totalFractions - 1), sizeof(fraction), fraction_compare);
+    //quicksort(vector_get(fractions, 0), vector_get(fractions, totalFractions - 1), sizeof(fraction), fraction_compare);
+    fraction_quicksort(fractions->data, 0, totalFractions - 1);
 
     char buffer[BUFFER_SIZE];
     setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));

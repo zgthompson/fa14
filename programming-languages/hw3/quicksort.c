@@ -41,3 +41,33 @@ void quicksort(void *left, void *right, int typeSize, compare_func comp) {
     }
 
 }
+
+
+void fraction_quicksort(fraction *array, int left, int right) {
+
+    fraction pivot = array[(right + left) / 2];
+
+    int i = left;
+    int j = right;
+
+    while (i <= j) {
+        while (fraction_compare(&(array[i]), &pivot) < 0) ++i;
+        while (fraction_compare(&(array[j]), &pivot) > 0) --j;
+
+        if (i <= j) {
+            fraction temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            ++i;
+            --j;
+        }
+    }
+
+    if (left < j) {
+        fraction_quicksort(array, left, j);
+    }
+
+    if (i < right) {
+        fraction_quicksort(array, i, right);
+    }
+}
