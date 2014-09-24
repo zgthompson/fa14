@@ -2,8 +2,9 @@
 #include <string.h>
 
 #include "quicksort.h"
+#include "fraction.h"
 
-const int SELECTION_SORT_THRESHOLD = 10;
+const int SELECTION_SORT_THRESHOLD = 20;
 
 
 void quicksort(void *left, void *right, int typeSize, compare_func comp) {
@@ -53,8 +54,9 @@ void fraction_quicksort(fraction *array, int left, int right) {
     int j = right;
 
     while (i <= j) {
-        while (array[i].value < pivot.value) ++i;
-        while (array[j].value > pivot.value) --j;
+
+        while ((array[i].numerator * pivot.denominator - pivot.numerator * array[i].denominator) < 0) ++i;
+        while ((array[j].numerator * pivot.denominator - pivot.numerator * array[j].denominator) > 0) --j;
 
         if (i <= j) {
             fraction temp = array[i];
@@ -90,7 +92,7 @@ void fraction_insertionsort(fraction *array, int left, int right) {
     while (i <= right) {
         fraction f = array[i];
         int j = i;
-        while (j > left && array[j-1].value > f.value) {
+        while (j > left && (array[j-1].numerator * f.denominator - f.numerator * array[j-1].denominator) > 0) {
             array[j] = array[j-1];
             --j;
         }

@@ -44,7 +44,6 @@ bool fraction_init(FILE *fp, fraction *f) {
     // set remaining member variables
     f->numerator = numerator;
     f->denominator = denominator;
-    f->value = (double)numerator / denominator;
 
     return true;
 
@@ -52,7 +51,6 @@ bool fraction_init(FILE *fp, fraction *f) {
 
 
 long long fraction_gcd(long long a, long long b) {
-
     while (b != 0) {
         long long oldA = a;
         a = b;
@@ -63,13 +61,6 @@ long long fraction_gcd(long long a, long long b) {
 }
 
 
-int fraction_compare(const void *lhs, const void *rhs) {
-    fraction *f1 = (fraction*)lhs;
-    fraction *f2 = (fraction*)rhs;
-    return (f1->numerator * f2-> denominator) - (f2->numerator * f1->denominator);
-}
-
-
 void fraction_add(fraction *f1, const fraction *f2) {
     f1->numerator = (f1->numerator * f2->denominator) + (f2->numerator * f1->denominator);
     f1->denominator *= f2->denominator;
@@ -77,7 +68,6 @@ void fraction_add(fraction *f1, const fraction *f2) {
     long long divisor = fraction_gcd(f1->denominator, f1->numerator);
     f1->numerator /= divisor;
     f1->denominator /= divisor;
-    f1->value = f1->numerator / f1->denominator;
 }
 
 void fraction_print(const fraction *f) {
@@ -91,3 +81,9 @@ void fraction_print(const fraction *f) {
     printf("%d %d/%d\n", wholePrint, numeratorPrint, (int)f->denominator);
 }
 
+
+int fraction_compare(const void *lhs, const void *rhs) {
+    fraction *f1 = (fraction*)lhs;
+    fraction *f2 = (fraction*)rhs;
+    return (f1->numerator * f2-> denominator) - (f2->numerator * f1->denominator);
+}

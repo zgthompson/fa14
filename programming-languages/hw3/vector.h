@@ -13,9 +13,10 @@ typedef struct {
 
 vector *vector_new(int typeSize);
 void vector_grow(vector *v);
-void vector_push(vector *v, void *data);
 void *vector_get(vector *v, int index);
 void vector_copy_item(vector *v, void* dest, int index);
 int vector_count(vector *v);
+void vector_push(vector *v, void *data);
+
 
 #endif

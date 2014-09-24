@@ -10,17 +10,20 @@ H03.out: thompsonH03.o vector.o fraction.o quicksort.o SetLimits.o
 thompsonH03.o: thompsonH03.c
 	$(CC) $(CFLAGS) -c thompsonH03.c
 
-vector.o: vector.c
+vector.o: vector.c vector.h
 	$(CC) $(CFLAGS) -c vector.c
 
-fraction.o: fraction.c
+fraction.o: fraction.c fraction.h
 	$(CC) $(CFLAGS) -c fraction.c
 
-quicksort.o: quicksort.c
+quicksort.o: quicksort.c quicksort.h
 	$(CC) $(CFLAGS) -c quicksort.c
 
-SetLimits.o: SetLimits.c
+SetLimits.o: SetLimits.c SetLimits.h
 	$(CC) $(CFLAGS) -c SetLimits.c
+
+run:
+	time ./H03.out fractions.txt > test
 
 fractions:
 	python generateFractions.py $(SIZE)
