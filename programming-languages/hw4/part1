@@ -1,0 +1,35 @@
+a.out
+The condition for the while loop is (!input.eof()), which never occurs because the file never opened in the first place. This is an infinite loops that ends up with erroring out with Write failed: Broken pipe.
+
+b.out
+Same issue as a.out
+
+c.out
+The condition for the while loop is (input >> n) which evaluates false immediately since a file was not successfully opened. Since p is initialzed to 1, the ending product is 1.
+
+a.out input.em
+This works as intended and the resulting product is 234000.
+
+b.out input.em
+The -4 at the end of the file does not get printed or multiplied into the product. This occurs because at the end of the while loop the next number is read into n. This causes the input stream to be at the EOF, so that condition is then checked and the loop is exited without ever using that number. The resulting product is -58400.
+
+c.out input.em
+This works as intended and the resulting product is 234000.
+
+a.out input.np
+Same as "a.out input.em".
+
+b.out input.np
+Same as "b.out input.em".
+
+c.out input.np
+Same as "c.out input.em"
+
+a.out input.vi
+The vi file has a newline character at the end of the file, unlike the np and em files. This causes the while loop to be entered an additional time. Since there is no more integers in the file, input >> n fails and n stays the same value as it previously was. This value was -4, so the product is multiplied by an additional -4. Therefore the resulting product is -936000.
+
+b.out input.vi
+This works as intended and the resulting product is 234000.
+
+c.out input.vi
+This works as intended and the resulting product is 234000.
