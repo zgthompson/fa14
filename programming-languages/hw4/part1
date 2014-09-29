@@ -1,5 +1,56 @@
+HW4 Part 1
+Zachary Thompson
+
+./a.out
+0         0         0         0         0         0         0         0         
+... (infinite)
+
+./b.out
+0         0         0         0         0         0         0         0         
+... (infinite)
+
+./c.out
+The product of the numbers is 1
+
+./a.out input.em
+12        -13       15        25        -4        
+The product of the numbers is 234000
+
+./b.out input.em
+12        -13       15        25        
+The product of the numbers is -58500
+
+./c.out input.em
+12        -13       15        25        -4        
+The product of the numbers is 234000
+
+./a.out input.np
+12        -13       15        25        -4        
+The product of the numbers is 234000
+
+./b.out input.np
+12        -13       15        25        
+The product of the numbers is -58500
+
+./c.out input.np
+12        -13       15        25        -4        
+The product of the numbers is 234000
+
+./a.out input.vi
+12        -13       15        25        -4        -4        
+The product of the numbers is -936000
+
+./b.out input.vi
+12        -13       15        25        -4        
+The product of the numbers is 234000
+
+./c.out input.vi
+12        -13       15        25        -4        
+The product of the numbers is 234000
+
+
 a.out
-The condition for the while loop is (!input.eof()), which never occurs because the file never opened in the first place. This is an infinite loops that ends up with erroring out with Write failed: Broken pipe.
+The condition for the while loop is (!input.eof()), which never occurs because the file never opened in the first place. This is an infinite loops.
 
 b.out
 Same issue as a.out
