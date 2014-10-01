@@ -4,12 +4,14 @@
 #include <linux/sched.h>
 #include <linux/list.h>
 
+void print_processes(void);
 void print_processes_dfs(void);
 void print_children_recursive(struct task_struct *task);
 
 
 static int __init process_init( void ) {
 
+    print_processes();
     print_processes_dfs();
 
     return 0;
@@ -21,6 +23,16 @@ static void __exit process_exit( void ) {
     printk(KERN_INFO "Removing module\n");
 }
 
+
+
+void print_processes(void) {
+    struct task_struct *task;
+
+    printk(KERN_INFO "%6s  %6s  %-12s\n", "ID", "STATE", "NAME");
+    for_each_process(task) {
+        printk(KERN_INFO "%6d  %6ld  %-12s\n", task->pid, task->state, task->comm);
+    }
+}
 
 
 void print_processes_dfs(void) {
