@@ -60,3 +60,33 @@
    ((or (null? lst) (null? (cdr lst))) lst)
    (else (cons (car lst) (odd-copy (cddr lst)))))))
 
+
+(define even-copy
+ (lambda (lst)
+  (cond
+   ((not (list? lst)) "First argument must be a list")
+   ((or (null? lst) (null? (cdr lst))) '())
+   (else (cons (car (cdr lst)) (even-copy (cddr lst)))))))
+
+
+(define insert-last
+ (lambda (lst val)
+  (if (list? lst)
+   (append lst (list val))
+   "First argument must be a list")))
+
+
+(define remove-last
+ (lambda (lst)
+  (cond
+   ((not (list? lst)) "First argument must be a list")
+   ((or (null? lst) (null? (cdr lst))) '())
+   (else (cons (car lst) (remove-last (cdr lst)))))))
+
+
+(define list-reverse
+ (lambda (lst)
+  (cond
+   ((not (list? lst)) "First argument must be a list")
+   ((null? lst) lst)
+   (else (append (list-reverse (cdr lst)) (list (car lst)))))))
