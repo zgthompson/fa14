@@ -1,0 +1,39 @@
+Input file: ../../proj2/test.in
+   1: int a =;
+Error at 1,8: Identifier or numeric literal expected; ; found
+   2: double b = 5.5.5;
+Error at 2,16: Binary operator expected; .5 found
+Error at 2,17: Identifier or numeric literal expected; ; found
+   3: int c = a / b + 2.1;
+   4: double d = c - a * +b;
+   5: int e = -a % c & ++c;
+   6: int f = e |^ a--;
+Error at 6,12: Identifier or numeric literal expected; ^ found
+   7: int g = c << 2 + (a += 1;
+Error at 7,25: ) expected; ; found
+   8: int h = c >> 2 . (-= 1);
+Error at 8,16: Invalid character found: .
+Error at 8,16: Binary operator expected; . found
+Error at 8,24: Identifier or numeric literal expected; ; found
+   9: int i = e < f = g > h;
+  10: int j = ++a $ c+ + --e + f--;
+Error at 10,13: Invalid character found: $
+Error at 10,13: Binary operator expected; $ found
+Error at 10,29: Identifier or numeric literal expected; ; found
+  11: int k = a <= c && e >= f || !(g + (h - j) * k);
+Error at 11,30: Identifier or numeric literal expected; ( found
+  12: int l = a~;
+Error at 12,10: Binary operator expected; ~ found
+Error at 12,11: Identifier or numeric literal expected; ; found
+  13: int m = (a =* 2) != (c /= 2);
+Error at 13,13: Identifier or numeric literal expected; * found
+Error at 13,29: ) expected; ; found
+  14: h %= 5;
+  15: i =& 255;
+Error at 15,4: Identifier or numeric literal expected; & found
+  16: j |= 5;
+  17: k ^= 127;
+  18: l <=< 2;
+Error at 18,5: Identifier or numeric literal expected; < found
+  19: m >= 3;
+18 errors found in input file

@@ -2,7 +2,9 @@
 #include <stdbool.h>
 
 typedef struct {
-    FILE *fp;
+    FILE *input;
+    FILE *output;
+    FILE *debug;
     char *line;
     int length;
     int pos;
@@ -39,7 +41,7 @@ extern size_t BUFFER_SIZE;
 extern int CHAR_MAP[256];
 
 
-void init_lex (lex_state *ls, char *filename);
+void init_lex (lex_state *ls, FILE *input, FILE *output, FILE *debug);
 enum token_type get_token (lex_state *ls);
 char * get_lexeme (lex_state *ls);
 void error_message (char * msg);
