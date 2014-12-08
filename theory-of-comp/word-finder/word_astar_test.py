@@ -2,12 +2,24 @@ from word_astar import WordAStar
 import sys
 import random
 import itertools
+from matplotlib import pyplot
+
+def createPlot(results):
+    pyplot.title("Average transformability after removal of unconnected subgraphs")
+    pyplot.xlabel("Word length")
+    pyplot.ylabel("Average transformability coefficient")
+
+    for num, result in enumerate(results):
+        xs = [word_len for word_len, transform in result]
+        ys = [transform for word_len, transform in result]
+        pyplot.plot(xs, ys, label="Wordlist w/o %dRN words" % num, marker='o', linewidth=2)
+    pyplot.legend()
 
 def main():
 
     WORD_LEN_MIN = 2
     WORD_LEN_MAX = 9
-    SAMPLE_TOTAL = 100
+    SAMPLE_TOTAL = 20
 
     lens_with_transform = []
     for word_len in range(WORD_LEN_MIN, WORD_LEN_MAX):
@@ -29,5 +41,7 @@ def main():
             transform_average += transform
 
         lens_with_transform.append((word_len, transform_average / SAMPLE_TOTAL))
+    createPlot([lens_with_transform])
 
-main()
+
+#main()
