@@ -79,11 +79,13 @@ class AStar(object):
         # reverse order so root node is first
         path.reverse()
 
+        """
         for i, node in enumerate(path):
             if i == 0:
                 print "Input  : %s" % node
             else:
                 print "Move %2s: %s" % (i, node)
+        """
 
         return path
 

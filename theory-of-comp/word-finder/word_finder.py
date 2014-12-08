@@ -2,7 +2,7 @@ from collections import defaultdict
 import json
 import os.path
 
-DICTIONARY_FILE = "sowpods.txt"
+DICTIONARY_FILE = "ospd.txt"
 
 class WordFinder(object):
 
