@@ -1,4 +1,5 @@
-from priority_queue import PriorityQueue
+# from priority_queue import PriorityQueue
+from heapq import *
 
 class AStar(object):
     """
@@ -17,12 +18,14 @@ class AStar(object):
         self.goal_node = goal_node
 
         # min heap for the fringe
-        self.fringe = PriorityQueue()
-        self.fringe.add_node( root_node, self.h_score(root_node) )
+        self.fringe = []
+        self.nodes_seen = set()
+        heappush(self.fringe, (self.h_score(root_node), root_node))
+        self.nodes_seen.add(root_node)
 
         # min cost to node
         self.min_node_score = {}
-        self.min_node_score[ str(root_node) ] = 0
+        self.min_node_score[root_node] = 0
 
         # path to start
         self.came_from = {}
@@ -37,11 +40,12 @@ class AStar(object):
         """
         while self.fringe:
             # grab the best candidate so far
-            current_node = self.fringe.pop_node()
+            current_node = heappop(self.fringe)[1]
 
             self.nodes_visited += 1
 
-            if self.is_goal(current_node): return self.path_to_root(current_node)
+            if self.is_goal(current_node):
+                return self.path_to_root(current_node)
             else:
                 self.add_children_to_fringe(current_node)
         # no path was found
@@ -64,13 +68,13 @@ class AStar(object):
         """
         Return a list of nodes from root_node to node
         """
-        path = [ node ]
-        current_key = str(node)
+        path = [node]
+        current_key = node
 
         while current_key in self.came_from:
             next_node = self.came_from[current_key]
             path.append(next_node)
-            current_key = str(next_node)
+            current_key = next_node
 
         # reverse order so root node is first
         path.reverse()
@@ -89,14 +93,15 @@ class AStar(object):
         Adds all the children of node to fringe and updates min_node_score and
         came_from dictionaries
         """
-        node_key = str(node)
-        cost_to_node = self.min_node_score[ node_key ]
+        node_key = node
+        cost_to_node = self.min_node_score[node_key]
 
         for child, cost_to_move in self.children(node):
             cost_to_child = cost_to_node + cost_to_move
-            child_key = str(child)
-            if child_key not in self.min_node_score or self.min_node_score[child_key] > cost_to_child:
-                self.fringe.add_node(child, cost_to_child + self.h_score(child))
+            child_key = child
+            if child_key not in self.min_node_score:
+                heappush(self.fringe,
+                        (cost_to_child + self.h_score(child), child))
                 self.min_node_score[child_key] = cost_to_child
                 self.came_from[child_key] = node
 
@@ -104,5 +109,5 @@ class AStar(object):
         """
         Returns True if node is the same as goal_node, False otherwise
         """
-        return str(node) == str(self.goal_node)
+        return node == self.goal_node
 

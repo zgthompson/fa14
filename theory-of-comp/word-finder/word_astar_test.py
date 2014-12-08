@@ -7,6 +7,8 @@ def main():
         return
 
     a = WordAStar(sys.argv[1], sys.argv[2])
+    print "start"
     a.search()
+    print "end"
 
 main()
