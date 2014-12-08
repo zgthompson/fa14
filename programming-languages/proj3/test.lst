@@ -1,0 +1,4 @@
+Input file: test.in
+   1: int a = 4 * (3 + 2) / (10 - 8);
+   2: int b = 4 * 5 / 2;
+0 errors found in input file

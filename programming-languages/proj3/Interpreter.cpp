@@ -164,10 +164,6 @@ void Interpreter::EvaluateQ() {
             if (curOp->order == RIGHT_TO_LEFT && curOp->arguments == 1) {
                 opStack.push(curOp);
                 rightToLeftUnary = true;
-
-            }
-            else if (topOp == NULL || (curOp->priority == topOp->priority && topOp->order == RIGHT_TO_LEFT) || curOp->priority < topOp->priority) {
-                opStack.push(curOp);
             }
             else {
                 while (topOp != NULL && ((topOp->priority == curOp->priority && topOp->order == LEFT_TO_RIGHT) || topOp->priority < curOp->priority)) {
@@ -186,6 +182,7 @@ void Interpreter::EvaluateQ() {
                     opStack.pop();
                     topOp = !opStack.empty() ? opStack.top() : NULL;
                 }
+                opStack.push(curOp);
             }
         }
     }
@@ -207,10 +204,9 @@ void Interpreter::EvaluateQ() {
         opStack.pop();
     }
 
-    Symbol *result = qs.back().back();
     qs.pop_back();
     if (!qs.empty()) {
-        qs.back().push_back(result);
+        qs.back().push_back(varStack.top());
     }
 }
 
