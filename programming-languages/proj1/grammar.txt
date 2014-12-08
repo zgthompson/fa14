@@ -1,0 +1,62 @@
+<program> -> <stmt> SEMI <more_stmts> 
+<program> -> <decl> SEMI <more_stmts> 
+<more_stmts> -> <stmt> SEMI <more_stmts> 
+<more_stmts> -> <decl> SEMI <more_stmts> 
+<more_stmts> -> {} 
+<stmt> -> <term> <stmt_tail> 
+<decl> -> <ntype> IDENT <decl_tail> <more_decls> 
+<ntype> -> INTTYPE 
+<ntype> -> DBLTYPE 
+<decl_tail> -> ASSIGN <stmt> 
+<decl_tail> -> {} 
+<more_decls> -> COMMA IDENT <decl_tail> <more_decls> 
+<more_decls> -> {} 
+<term> -> <pre> <var> <post> 
+<term> -> LPAREN <stmt> RPAREN 
+<pre> -> <uoppre> <pre> 
+<pre> -> {} 
+<uoppre> -> PLUS 
+<uoppre> -> MINUS 
+<uoppre> -> NOT 
+<uoppre> -> TILDA 
+<uoppre> -> PLUSPLUS 
+<uoppre> -> MINUSMINUS 
+<var> -> IDENT 
+<var> -> NUMLIT 
+<post> -> PLUSPLUS 
+<post> -> MINUSMINUS 
+<post> -> {} 
+<stmt_tail> -> <binop> <stmt> 
+<stmt_tail> -> QUEST <stmt> COLON <stmt> 
+<stmt_tail> -> {} 
+<binop> -> PLUS 
+<binop> -> MINUS 
+<binop> -> MULT 
+<binop> -> DIV 
+<binop> -> MOD 
+<binop> -> AND 
+<binop> -> OR 
+<binop> -> XOR 
+<binop> -> ASSIGN 
+<binop> -> LT 
+<binop> -> GT 
+<binop> -> SHIFTL 
+<binop> -> SHIFTR 
+<binop> -> PLUSEQ 
+<binop> -> MINUSEQ 
+<binop> -> MULTEQ 
+<binop> -> DIVEQ 
+<binop> -> MODEQ 
+<binop> -> NOTEQ 
+<binop> -> LOGAND <binop> -> ANDEQ
+<binop> -> LOGOR
+<binop> -> OREQ
+<binop> -> XOREQ
+<binop> -> EQUALTO
+<binop> -> SHIFTLEQ
+<binop> -> LTE
+<binop> -> SHIFTREQ
+<binop> -> GTE
+<binop> -> COMMA
+<binop> -> EXP
+<binop> -> EXPEQ
