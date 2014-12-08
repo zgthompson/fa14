@@ -9,6 +9,7 @@ def main():
     WORD_LEN_MAX = 9
     SAMPLE_TOTAL = 100
 
+    lens_with_transform = []
     for word_len in range(WORD_LEN_MIN, WORD_LEN_MAX):
         pool = [word for word in WordAStar.finder.dictionary if len(word) == word_len]
         n = len(pool)
@@ -26,17 +27,7 @@ def main():
                 transform = 0
 
             transform_average += transform
-        print "%f: %d letter word transform average" % (transform_average / SAMPLE_TOTAL, word_len)
 
+        lens_with_transform.append((word_len, transform_average / SAMPLE_TOTAL))
 
-
-
-        """
-        for start, end in itertools.combinations(words, 2):
-            path = WordAStar(start, end).search()
-            if path:
-                print "%d: %s" %(count, "->".join(path))
-            else:
-                print "%d: No path from %s to %s" % (count, start, end)
-        """
 main()
