@@ -75,7 +75,7 @@ class WordFinder(object):
 
         with open(DICTIONARY_FILE) as wordDict:
             fullDictionary = [word.strip() for word in wordDict] 
-            dictionary = [word for word in fullDictionary if len(word) in range(3, 6)]
+            dictionary = [word for word in fullDictionary] 
 
         return dictionary
 
