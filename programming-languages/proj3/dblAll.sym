@@ -1,0 +1,47 @@
+Input file: dblAll.in
+
+Symbol Table Variables:
+	         a    DOUBLE         4
+	         b    DOUBLE         4
+	         c    DOUBLE         6
+	         d    DOUBLE         4
+	         e    DOUBLE         4
+	         f    DOUBLE        -4
+	         g    DOUBLE         0
+	         h    DOUBLE        24
+	         i    DOUBLE       1.5
+	         k    DOUBLE        10
+	         l    DOUBLE         2
+	         o    DOUBLE         0
+	         p    DOUBLE         0
+	         q    DOUBLE         5
+	         r    DOUBLE        -3
+	         s    DOUBLE         0
+	         t    DOUBLE      0.25
+	         x    DOUBLE         1
+	         y    DOUBLE         1
+	         z    DOUBLE         4
+
+Symbol Table Numbers:
+	         5   INTEGER         5
+
+Symbol Table Temporaries:
+	        $0   INTEGER         5
+	        $1   INTEGER         5
+	        $2    DOUBLE         4
+	        $3    DOUBLE        -4
+	        $4   INTEGER         0
+	        $5    DOUBLE        24
+	        $6    DOUBLE       1.5
+	        $7    DOUBLE        10
+	        $8    DOUBLE         2
+	        $9   INTEGER         0
+	       $10   INTEGER         0
+	       $11   INTEGER         1
+	       $12   INTEGER         1
+	       $13   INTEGER         0
+	       $14   INTEGER         1
+	       $15   INTEGER         1
+	       $16   INTEGER         1
+
+Symbol Table Operators:

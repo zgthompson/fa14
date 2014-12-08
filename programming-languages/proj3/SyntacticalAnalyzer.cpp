@@ -1,5 +1,3 @@
-// need to handle left and right parens
-// start/end queue
 #include <iostream>
 #include <fstream>
 #include "SyntacticalAnalyzer.h"
@@ -13,6 +11,7 @@ SyntacticalAnalyzer::SyntacticalAnalyzer (char * filename)
     interp = new Interpreter(filename, lex);
     token = lex->get_token ();
     program ();
+    interp->symbollist << *interp;
 }
 
 SyntacticalAnalyzer::~SyntacticalAnalyzer ()
@@ -29,8 +28,11 @@ void SyntacticalAnalyzer::program()
     lex->debug << string(2 * ++indent, ' ') << "Entering <program>\n";
     if (token == INTTYPE || token == DBLTYPE)
         decl ();
-    else
+    else {
+        interp->StartQ();
         stmt ();
+        interp->EvaluateQ();
+    }
     if (token == SEMI)
         token = lex->get_token();
     else
@@ -61,8 +63,11 @@ void SyntacticalAnalyzer::more_stmts()
     {
         if (token == INTTYPE || token == DBLTYPE)
             decl ();
-        else
+        else {
+            interp->StartQ();
             stmt ();
+            interp->EvaluateQ();
+        }
         if (token == SEMI)
             token = lex->get_token();
         else
@@ -96,6 +101,7 @@ void SyntacticalAnalyzer::decl()
     ntype ();
     if (token == IDENT)
     {
+        interp->StartQ();
         interp->NewDeclaration(lex->get_lexeme());
         token = lex->get_token();
     }
@@ -144,6 +150,8 @@ void SyntacticalAnalyzer::decl_tail()
                 token = lex->get_token();
         }
         stmt ();
+
+        interp->EvaluateQ();
     }
     lex->debug << string(2 * indent--, ' ') << "Exiting <decl_tail>\n";
 }
@@ -166,10 +174,13 @@ void SyntacticalAnalyzer::term()
     lex->debug << string(2 * ++indent, ' ') << "Entering <term>\n";
     if (token == LPAREN)
     {
+        interp->StartQ();
         token = lex->get_token();
         stmt ();
-        if (token == RPAREN)
+        if (token == RPAREN) {
+            interp->EvaluateQ();
             token = lex->get_token();
+        }
         else
         {
             lex->error_message (") expected; " + lex->get_lexeme() + " found");
