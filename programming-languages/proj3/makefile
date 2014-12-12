@@ -18,7 +18,7 @@ Interpreter.o : Interpreter.h Interpreter.cpp Symbol.h
 
 tar:
 	mkdir thompsonP3
-	cp makefile *.cpp *.h thompsonP3/
+	cp makefile README.txt *.cpp *.h thompsonP3/
 	tar cfvz thompsonP3.tgz thompsonP3/
 	rm -rf thompsonP3
 
