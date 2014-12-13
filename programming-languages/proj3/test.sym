@@ -1,24 +1,24 @@
 Input file: test.in
 
 Symbol Table Variables:
-	         a   INTEGER        10
-	         b   INTEGER        10
+	         a   INTEGER       265
+	         b   INTEGER         3
+	         c   INTEGER       131
 
 Symbol Table Numbers:
+	         1   INTEGER         1
 	        10   INTEGER        10
 	         2   INTEGER         2
 	         3   INTEGER         3
-	         4   INTEGER         4
-	         5   INTEGER         5
-	         8   INTEGER         8
 
 Symbol Table Temporaries:
-	        $0   INTEGER         5
-	        $1   INTEGER         2
-	        $2   INTEGER        20
-	        $3   INTEGER        10
-	        $4   INTEGER        20
-	        $5   INTEGER        10
+	        $0   INTEGER        -1
+	        $1   INTEGER         4
+	        $2   INTEGER         3
+	        $3   INTEGER      1024
+	        $4   INTEGER       128
+	        $5   INTEGER       262
+	        $6   INTEGER       265
 
 Symbol Table Operators:
 	   ++              POSTPP    1    1  LEFT_TO_RIGHT   INTEGER      NONE

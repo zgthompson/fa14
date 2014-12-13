@@ -1,16 +1,41 @@
 from tag_systems import *
 import itertools
+
 """
-for startTag in ["".join(seq) for seq in itertools.product("01", repeat=3)]:
+results = []
+for startTag in ["".join(seq) for seq in itertools.product("01", repeat=19)]:
+    steps = 0
     for tag in tags(startTag):
-        print tag
-    print "-" * 10
+        steps += 1
+    results.append(steps)
+
+print max(results)
 """
 
-startTag = "0101010101"
+
+startTag = "101110111011"
+tracker = {}
+maxLength = 0
+maxLengthGen = 0
+lastTag = None
+lastGen = None
 for count, tag in enumerate(tags(startTag)):
-    print "%2d %30s, len: %2d" % (count + 1, tag, len(tag))
-print "-" * 15
+    if maxLength < len(tag):
+        maxLength = len(tag)
+        maxLengthGen = count
+    tracker[tag] = count
+    lastTag = tag
+    lastGen = count
+
+
+print "Max length: %d" % maxLength
+print "Max length generation: %d" % maxLengthGen
+print lastGen
+"""
+print "Cycle start generation: %d" % tracker[repeat]
+print "Cycle length: %d" % (lastGen - tracker[repeat])
+"""
+
 
 
 

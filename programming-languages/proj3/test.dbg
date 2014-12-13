@@ -1,5 +1,5 @@
 Input file: test.in
-   1: int a = 4 * (3 + 2) / (10 - 8);
+   1: int a = 3;
 	INTTYPE   	int
                       Entering <program>
                         Entering <decl>
@@ -8,103 +8,23 @@ Input file: test.in
                           Exiting <ntype>
 	ASSIGN    	=
                           Entering <decl_tail>
-	NUMLIT    	4
+	NUMLIT    	3
                             Entering <stmts>
                               Entering <term>
                                 Entering <pre>
                                 Exiting <pre>
                                 Entering <var>
-	MULT      	*
+	SEMI      	;
                                 Exiting <var>
                                 Entering <post>
                                 Exiting <post>
                               Exiting <term>
                               Entering <stmt_tail>
-                                Entering <binop>
-	LPAREN    	(
-                                Exiting <binop>
-                                Entering <stmts>
-                                  Entering <term>
-	NUMLIT    	3
-                                    Entering <stmts>
-                                      Entering <term>
-                                        Entering <pre>
-                                        Exiting <pre>
-                                        Entering <var>
-	PLUS      	+
-                                        Exiting <var>
-                                        Entering <post>
-                                        Exiting <post>
-                                      Exiting <term>
-                                      Entering <stmt_tail>
-                                        Entering <binop>
-	NUMLIT    	2
-                                        Exiting <binop>
-                                        Entering <stmts>
-                                          Entering <term>
-                                            Entering <pre>
-                                            Exiting <pre>
-                                            Entering <var>
-	RPAREN    	)
-                                            Exiting <var>
-                                            Entering <post>
-                                            Exiting <post>
-                                          Exiting <term>
-                                          Entering <stmt_tail>
-                                          Exiting <stmt_tail>
-                                        Exiting <stmts>
-                                      Exiting <stmt_tail>
-                                    Exiting <stmts>
-	DIV       	/
-                                  Exiting <term>
-                                  Entering <stmt_tail>
-                                    Entering <binop>
-	LPAREN    	(
-                                    Exiting <binop>
-                                    Entering <stmts>
-                                      Entering <term>
-	NUMLIT    	10
-                                        Entering <stmts>
-                                          Entering <term>
-                                            Entering <pre>
-                                            Exiting <pre>
-                                            Entering <var>
-	MINUS     	-
-                                            Exiting <var>
-                                            Entering <post>
-                                            Exiting <post>
-                                          Exiting <term>
-                                          Entering <stmt_tail>
-                                            Entering <binop>
-	NUMLIT    	8
-                                            Exiting <binop>
-                                            Entering <stmts>
-                                              Entering <term>
-                                                Entering <pre>
-                                                Exiting <pre>
-                                                Entering <var>
-	RPAREN    	)
-                                                Exiting <var>
-                                                Entering <post>
-                                                Exiting <post>
-                                              Exiting <term>
-                                              Entering <stmt_tail>
-                                              Exiting <stmt_tail>
-                                            Exiting <stmts>
-                                          Exiting <stmt_tail>
-                                        Exiting <stmts>
-	SEMI      	;
-                                      Exiting <term>
-                                      Entering <stmt_tail>
-                                      Exiting <stmt_tail>
-                                    Exiting <stmts>
-                                  Exiting <stmt_tail>
-                                Exiting <stmts>
                               Exiting <stmt_tail>
                             Exiting <stmts>
                           Exiting <decl_tail>
                         Exiting <decl>
-   2: int b = 4 * 5 / 2;
+   2: int b = -1;
 	INTTYPE   	int
                         Entering <more_stmts>
                           Entering <decl>
@@ -113,30 +33,134 @@ Input file: test.in
                             Exiting <ntype>
 	ASSIGN    	=
                             Entering <decl_tail>
-	NUMLIT    	4
+	MINUS     	-
+                              Entering <stmts>
+                                Entering <term>
+                                  Entering <pre>
+                                    Entering <uoppre>
+	NUMLIT    	1
+                                    Exiting <uoppre>
+                                    Entering <pre>
+                                    Exiting <pre>
+                                  Exiting <pre>
+                                  Entering <var>
+	SEMI      	;
+                                  Exiting <var>
+                                  Entering <post>
+                                  Exiting <post>
+                                Exiting <term>
+                                Entering <stmt_tail>
+                                Exiting <stmt_tail>
+                              Exiting <stmts>
+                            Exiting <decl_tail>
+                          Exiting <decl>
+   3: int c = 2;
+	INTTYPE   	int
+                          Entering <more_stmts>
+                            Entering <decl>
+                              Entering <ntype>
+	IDENT     	c
+                              Exiting <ntype>
+	ASSIGN    	=
+                              Entering <decl_tail>
+	NUMLIT    	2
+                                Entering <stmts>
+                                  Entering <term>
+                                    Entering <pre>
+                                    Exiting <pre>
+                                    Entering <var>
+	SEMI      	;
+                                    Exiting <var>
+                                    Entering <post>
+                                    Exiting <post>
+                                  Exiting <term>
+                                  Entering <stmt_tail>
+                                  Exiting <stmt_tail>
+                                Exiting <stmts>
+                              Exiting <decl_tail>
+                            Exiting <decl>
+   4: a = (b = b + c * 2) + 2 * (c = ++c += 1 << 10 >> 3);
+	IDENT     	a
+                            Entering <more_stmts>
                               Entering <stmts>
                                 Entering <term>
                                   Entering <pre>
                                   Exiting <pre>
                                   Entering <var>
-	MULT      	*
+	ASSIGN    	=
                                   Exiting <var>
                                   Entering <post>
                                   Exiting <post>
                                 Exiting <term>
                                 Entering <stmt_tail>
                                   Entering <binop>
-	NUMLIT    	5
+	LPAREN    	(
                                   Exiting <binop>
                                   Entering <stmts>
                                     Entering <term>
-                                      Entering <pre>
-                                      Exiting <pre>
-                                      Entering <var>
-	DIV       	/
-                                      Exiting <var>
-                                      Entering <post>
-                                      Exiting <post>
+	IDENT     	b
+                                      Entering <stmts>
+                                        Entering <term>
+                                          Entering <pre>
+                                          Exiting <pre>
+                                          Entering <var>
+	ASSIGN    	=
+                                          Exiting <var>
+                                          Entering <post>
+                                          Exiting <post>
+                                        Exiting <term>
+                                        Entering <stmt_tail>
+                                          Entering <binop>
+	IDENT     	b
+                                          Exiting <binop>
+                                          Entering <stmts>
+                                            Entering <term>
+                                              Entering <pre>
+                                              Exiting <pre>
+                                              Entering <var>
+	PLUS      	+
+                                              Exiting <var>
+                                              Entering <post>
+                                              Exiting <post>
+                                            Exiting <term>
+                                            Entering <stmt_tail>
+                                              Entering <binop>
+	IDENT     	c
+                                              Exiting <binop>
+                                              Entering <stmts>
+                                                Entering <term>
+                                                  Entering <pre>
+                                                  Exiting <pre>
+                                                  Entering <var>
+	MULT      	*
+                                                  Exiting <var>
+                                                  Entering <post>
+                                                  Exiting <post>
+                                                Exiting <term>
+                                                Entering <stmt_tail>
+                                                  Entering <binop>
+	NUMLIT    	2
+                                                  Exiting <binop>
+                                                  Entering <stmts>
+                                                    Entering <term>
+                                                      Entering <pre>
+                                                      Exiting <pre>
+                                                      Entering <var>
+	RPAREN    	)
+                                                      Exiting <var>
+                                                      Entering <post>
+                                                      Exiting <post>
+                                                    Exiting <term>
+                                                    Entering <stmt_tail>
+                                                    Exiting <stmt_tail>
+                                                  Exiting <stmts>
+                                                Exiting <stmt_tail>
+                                              Exiting <stmts>
+                                            Exiting <stmt_tail>
+                                          Exiting <stmts>
+                                        Exiting <stmt_tail>
+                                      Exiting <stmts>
+	PLUS      	+
                                     Exiting <term>
                                     Entering <stmt_tail>
                                       Entering <binop>
@@ -147,22 +171,116 @@ Input file: test.in
                                           Entering <pre>
                                           Exiting <pre>
                                           Entering <var>
-	SEMI      	;
+	MULT      	*
                                           Exiting <var>
                                           Entering <post>
                                           Exiting <post>
                                         Exiting <term>
                                         Entering <stmt_tail>
+                                          Entering <binop>
+	LPAREN    	(
+                                          Exiting <binop>
+                                          Entering <stmts>
+                                            Entering <term>
+	IDENT     	c
+                                              Entering <stmts>
+                                                Entering <term>
+                                                  Entering <pre>
+                                                  Exiting <pre>
+                                                  Entering <var>
+	ASSIGN    	=
+                                                  Exiting <var>
+                                                  Entering <post>
+                                                  Exiting <post>
+                                                Exiting <term>
+                                                Entering <stmt_tail>
+                                                  Entering <binop>
+	PLUSPLUS  	++
+                                                  Exiting <binop>
+                                                  Entering <stmts>
+                                                    Entering <term>
+                                                      Entering <pre>
+                                                        Entering <uoppre>
+	IDENT     	c
+                                                        Exiting <uoppre>
+                                                        Entering <pre>
+                                                        Exiting <pre>
+                                                      Exiting <pre>
+                                                      Entering <var>
+	PLUSEQ    	+=
+                                                      Exiting <var>
+                                                      Entering <post>
+                                                      Exiting <post>
+                                                    Exiting <term>
+                                                    Entering <stmt_tail>
+                                                      Entering <binop>
+	NUMLIT    	1
+                                                      Exiting <binop>
+                                                      Entering <stmts>
+                                                        Entering <term>
+                                                          Entering <pre>
+                                                          Exiting <pre>
+                                                          Entering <var>
+	SHIFTL    	<<
+                                                          Exiting <var>
+                                                          Entering <post>
+                                                          Exiting <post>
+                                                        Exiting <term>
+                                                        Entering <stmt_tail>
+                                                          Entering <binop>
+	NUMLIT    	10
+                                                          Exiting <binop>
+                                                          Entering <stmts>
+                                                            Entering <term>
+                                                              Entering <pre>
+                                                              Exiting <pre>
+                                                              Entering <var>
+	SHIFTR    	>>
+                                                              Exiting <var>
+                                                              Entering <post>
+                                                              Exiting <post>
+                                                            Exiting <term>
+                                                            Entering <stmt_tail>
+                                                              Entering <binop>
+	NUMLIT    	3
+                                                              Exiting <binop>
+                                                              Entering <stmts>
+                                                                Entering <term>
+                                                                  Entering <pre>
+                                                                  Exiting <pre>
+                                                                  Entering <var>
+	RPAREN    	)
+                                                                  Exiting <var>
+                                                                  Entering <post>
+                                                                  Exiting <post>
+                                                                Exiting <term>
+                                                                Entering <stmt_tail>
+                                                                Exiting <stmt_tail>
+                                                              Exiting <stmts>
+                                                            Exiting <stmt_tail>
+                                                          Exiting <stmts>
+                                                        Exiting <stmt_tail>
+                                                      Exiting <stmts>
+                                                    Exiting <stmt_tail>
+                                                  Exiting <stmts>
+                                                Exiting <stmt_tail>
+                                              Exiting <stmts>
+	SEMI      	;
+                                            Exiting <term>
+                                            Entering <stmt_tail>
+                                            Exiting <stmt_tail>
+                                          Exiting <stmts>
                                         Exiting <stmt_tail>
                                       Exiting <stmts>
                                     Exiting <stmt_tail>
                                   Exiting <stmts>
                                 Exiting <stmt_tail>
                               Exiting <stmts>
-                            Exiting <decl_tail>
-                          Exiting <decl>
+   5: 
 	EOFT      	eof
-                          Entering <more_stmts>
+                              Entering <more_stmts>
+                              Exiting <more_stmts>
+                            Exiting <more_stmts>
                           Exiting <more_stmts>
                         Exiting <more_stmts>
                       Exiting <program>

@@ -21,12 +21,14 @@ class Domino(object):
                 bottoms = "".join( [domino.bottom for domino in ordering] )
 
                 if ordering and tops == bottoms:
-                    print "-" * 20
-                    print [posOfDomino[domino] for domino in ordering]
-                    print ", ".join([str(item) for item in ordering])
-                    print "-" * 20
+                    if len(set(ordering)) == len(dominos):
+                        print "-" * 20
+                        print [posOfDomino[domino] for domino in ordering]
+                        print ", ".join([str(item) for item in ordering])
+                        print "-" * 20
 
 def main():
+    Domino.dominosMatch( [ Domino("ABAB", "ABABAAA"), Domino("AAABBB", "BB"), Domino("AAB", "BAAB"), Domino("BA", "BAA"), Domino("AB", "BA"), Domino("AA", "A") ] )
     """
     print "Problem 1"
     Domino.dominosMatch( [ Domino("AAA", "AA"), Domino("BAA", "ABAAA") ] )
@@ -36,10 +38,8 @@ def main():
     Domino.dominosMatch( [ Domino("AB", "ABA"), Domino("BBA", "AA"), Domino("ABA", "BAB") ] )
     print "Problem 4"
     Domino.dominosMatch( [ Domino("AB", "BB"), Domino("AA", "BA"), Domino("AB", "ABB"), Domino("BB", "BAB") ] )
-    """
     print "Problem 5"
     Domino.dominosMatch( [ Domino("AB", "ABA"), Domino("BA", "ABB"), Domino("B", "AB"), Domino("ABB", "B"), Domino("A", "BAB") ] )
-    """
     print "Test 1, [ A|A ]"
     Domino.dominosMatch( [ Domino("A", "A") ] )
     print "Test 2, [ A|B ]"
